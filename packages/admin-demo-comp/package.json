@@ -1,0 +1,16 @@
+{
+  "name": "admin-demo-comp",
+  "version": "1.0.0",
+  "description": "admin-demo-comp",
+  "author": "LeungZ <LeungZ9@users.noreply.github.com>",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "admin-base": "^1.0.0"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+}
