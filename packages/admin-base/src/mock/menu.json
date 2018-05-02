@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "示例",
+    "code": "example",
+    "icon": "el-icon-menu",
+    "parent": null
+  },
+  {
+    "id": 2,
+    "name": "表单",
+    "code": "form",
+    "icon": "",
+    "parent": 1
+  },
+  {
+    "id": 3,
+    "name": "表格",
+    "code": "table",
+    "icon": "",
+    "parent": 1
+  },
+  {
+    "id": 4,
+    "name": "弹窗",
+    "code": "dialog",
+    "icon": "",
+    "parent": 1
+  },
+  {
+    "id": 5,
+    "name": "标签页",
+    "code": "tab",
+    "icon": "",
+    "parent": 1
+  },
+  {
+    "id": 6,
+    "name": "图表",
+    "code": "chart",
+    "icon": "el-icon-news",
+    "parent": null
+  }
+]

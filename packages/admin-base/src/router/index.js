@@ -1,8 +1,9 @@
 import Router from 'vue-router'
 
 let routes = []
-export default (Vue, router) => {
+export default (Vue, r) => {
   Vue.use(Router)
-  routes = routes.concat(router)
+
+  routes = routes.concat(r)
   return new Router({ routes })
 }

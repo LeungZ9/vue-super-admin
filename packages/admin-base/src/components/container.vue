@@ -1,16 +1,43 @@
 <template>
-  <div class="container">
-    <el-container>
-      <el-header></el-header>
-      <el-main>
-        <router-view></router-view>
-      </el-main>
-    </el-container>
+  <div class="container" :class="{'container-expand':collapse}">
+    <menubar></menubar>
+    <div class="container-body">
+      <div v-if="loading" class="loading">
+        <div class="loading-body">
+          <div class="cube"></div>
+          <div class="cube1 cube"></div>
+          <div class="cube3 cube"></div>
+          <div class="cube2 cube"></div>
+        </div>
+      </div>
+      <el-container v-else>
+        <el-header class="padding-h-3">
+          <div>富文本编辑器</div>
+          <div>
+            <el-breadcrumb>
+              <el-breadcrumb-item>组件</el-breadcrumb-item>
+              <el-breadcrumb-item>富文本编辑器</el-breadcrumb-item>
+            </el-breadcrumb>
+          </div>
+        </el-header>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+      </el-container>
+    </div>
   </div>
 </template>
 <script>
+import menubar from './menubar'
+import { mapState } from 'vuex'
 export default {
-
+  computed: mapState({
+    loading: state => state.bsShell.loading,
+    collapse: state => state.bsMenu.collapse
+  }),
+  components: {
+    menubar
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -21,5 +48,88 @@ export default {
   top: $header-h;
   bottom: 0;
   right: 0;
+  transition: left 0.3s ease;
+  &-expand {
+    left: $aside-collapsed-w;
+  }
+  &-body {
+    margin-left: $menubar-w;
+  }
+}
+.el-header {
+  display: flex;
+  height: $menubar-head-h !important;
+  line-height: $menubar-head-h;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+.el-breadcrumb {
+  font-size: 12px;
+  /deep/ &__item:last-child {
+    .el-breadcrumb__inner {
+      color: #99a9bf;
+    }
+  }
+  /deep/ &__inner {
+    font-weight: normal;
+    &:not(:hover) {
+      color: #475669;
+    }
+  }
+}
+.loading {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  &-body {
+    width: 80px;
+    height: 80px;
+    transform: rotateZ(45deg);
+  }
+}
+.cube {
+  position: relative;
+  float: left;
+  width: 50%;
+  height: 50%;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #33b5e5;
+    animation: foldCube 2.4s infinite linear both;
+    transform-origin: 100% 100%;
+  }
+  @for $i from 1 through 3 {
+    &#{$i} {
+      transform: rotateZ(#{90*$i}deg);
+      &:before {
+        animation-delay: #{0.3*$i}s;
+      }
+    }
+  }
+}
+@keyframes foldCube {
+  0%,
+  10% {
+    transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%,
+  75% {
+    transform: perspective(140px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%,
+  100% {
+    transform: perspective(140px) rotateY(180deg);
+    opacity: 0;
+  }
 }
 </style>

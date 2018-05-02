@@ -1,9 +1,32 @@
 <template>
-  <aside></aside>
+  <aside :class="{'aside-collapsed':collapse}">
+    <div class="aside-wrapper">
+      <el-menu :collapse="collapse">
+        <el-menu-item :index="item.code" v-for="item in menu" :key="item.code">
+          <i :class="item.icon"></i>
+          <span slot="title">{{item.name}}</span>
+        </el-menu-item>
+      </el-menu>
+    </div>
+    <div @click="toggle" class="el-menu-item aside-toggle">
+      <i :class="`el-icon-caret-${collapse?'right':'left'}`"></i>
+    </div>
+  </aside>
 </template>
 <script>
+import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
-
+  computed: {
+    ...mapState({
+      collapse: state => state.bsMenu.collapse
+    }),
+    ...mapGetters({
+      menu: 'bsMenu/menu'
+    })
+  },
+  methods: mapActions({
+    toggle: 'bsMenu/toggleCollapse'
+  })
 }
 </script>
 <style lang="scss" scoped>
@@ -15,5 +38,44 @@ aside {
   bottom: 0;
   width: $aside-w;
   background: $aside-bg;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+}
+.aside {
+  &-wrapper {
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  &-toggle {
+    text-align: center;
+    background: $aside-menu-bg;
+  }
+  &-collapsed {
+    width: $aside-collapsed-w;
+  }
+}
+.el-menu {
+  border: none;
+  background: $aside-menu-bg;
+  width: 100%;
+  transition: none;
+  &-item {
+    font-size: 12px;
+    color: #fff;
+    height: $aside-menuItem-h;
+    line-height: $aside-menuItem-h;
+    i {
+      color: #fff;
+    }
+    &:hover,
+    &:focus {
+      background: $aside-menuItem-hover;
+    }
+    &.is-active {
+      background: $theme-color;
+    }
+  }
 }
 </style>

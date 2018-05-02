@@ -1,7 +1,7 @@
 {
-  "name": "admin-demo-comp",
+  "name": "admin-demo-example",
   "version": "1.0.0",
-  "description": "admin-demo-comp",
+  "description": "admin-demo-example",
   "author": "LeungZ <LeungZ9@users.noreply.github.com>",
   "private": true,
   "scripts": {},
@@ -12,5 +12,9 @@
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

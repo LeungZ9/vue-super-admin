@@ -1,3 +1,5 @@
+@import "var";
+
 html,
 body {
   margin: 0;
@@ -8,8 +10,29 @@ body {
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   font-size: 14px;
   color: #2b2b2b;
-  background: #eff2f7;
+  background: #fff;
   * {
     box-sizing: border-box;
+  }
+}
+
+@for $i from 1 through 3 {
+  .padding-#{$i} {
+    padding: #{$i * $theme-radix}px;
+  }
+  .padding-h-#{$i} {
+    padding: 0 #{$i * $theme-radix}px;
+  }
+  .padding-v-#{$i} {
+    padding: #{$i * $theme-radix}px 0;
+  }
+  .margin-#{$i} {
+    padding: #{$i * $theme-radix}px;
+  }
+  .margin-h-#{$i} {
+    padding: 0 #{$i * $theme-radix}px;
+  }
+  .margin-v-#{$i} {
+    padding: #{$i * $theme-radix}px 0;
   }
 }

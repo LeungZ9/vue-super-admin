@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="padding-h-3">
     <div class="header-brand" @click="$router.go(0)">{{brand}}</div>
     <div></div>
   </header>
@@ -25,17 +25,16 @@ header {
   display: flex;
   align-items: center;
   background: $header-bg;
-  padding-right: 30px;
 }
 .header {
   &-brand {
     color: #fff;
     font-size: 20px;
-    padding-left: 30px;
     font-weight: bold;
-    width: $aside-w;
+    text-align: center;
+    width: #{$theme-radix * 27}px;
     cursor: pointer;
-    border-right: 1px solid $theme-bg;
+    border-right: 1.1px solid $header-item-border;
   }
 }
 </style>

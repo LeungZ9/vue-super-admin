@@ -1,6 +1,7 @@
 import ElementUI from 'element-ui'
 import components from './components'
 import router from './router'
+import store from './store'
 
 class Base {
   constructor() {
@@ -18,6 +19,19 @@ class Base {
   }
   install(Vue, opts = {}) {
     this.router_ = router(Vue, opts.router)
+    this.store_ = store(Vue, opts.store)
+
+    this.router_.beforeEach(async(to, from, next) => {
+      this.store_.dispatch('bsShell/loadStart')
+      if (!this.store_.state.bsMenu.data.length) {
+        this.store_.dispatch('bsMenu/setData', await import('./mock/menu.json'))
+      }
+      next()
+    })
+    this.router_.afterEach((to, from) => {
+      this.store_.dispatch('bsShell/loadEnd')
+    })
+
     Vue.use(ElementUI, { size: 'small' })
   }
 }

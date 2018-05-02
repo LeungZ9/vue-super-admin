@@ -14,7 +14,7 @@ Vue.use(Base, {
 new Vue({
   el: '#app',
   router: Base.router,
-  // store: Base.store,
+  store: Base.store,
   render: h => {
     const r_ = []
     const keys = Object.keys(Base.comp)
