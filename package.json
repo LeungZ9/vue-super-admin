@@ -1,7 +1,7 @@
 {
   "name": "vue-super-admin",
   "version": "1.0.0",
-  "description": "vue-super-admin is based on element-ui to slove multiple module in a huge platform to reduce coupling",
+  "description": "vue-super-admin is an admin console demo, based on Vue.js and use the UI Toolkit -- element, to reduce coupling with multiple module in a huge platform",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --open --config build/webpack.dev.conf.js",

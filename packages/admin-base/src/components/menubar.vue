@@ -3,7 +3,7 @@
     <div class="menu-header padding-h-2">组件</div>
     <div class="menu-body" >
       <el-menu>
-        <el-menu-item :index="item.code" v-for="item in menu" :key="item.code">{{item.name}}</el-menu-item>
+        <el-menu-item @click="routerTo(item.url)" :index="item.code" v-for="item in menu" :key="item.code">{{item.name}}</el-menu-item>
       </el-menu>
     </div>
   </nav>
@@ -16,6 +16,11 @@ export default {
     ...mapGetters({
       menu: 'bsMenu/subMenu'
     })
+  },
+  methods: {
+    routerTo(url) {
+      this.$router.push({ path: url })
+    }
   }
 }
 </script>

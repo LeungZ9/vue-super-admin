@@ -1,6 +1,6 @@
 # admin-base
 
-> admin-base is a root package for admin console to render
+> admin-base is a root package to inject basic logic for every module package
 
 ### Components
 

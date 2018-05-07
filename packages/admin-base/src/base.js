@@ -1,4 +1,5 @@
 import ElementUI from 'element-ui'
+import locale from 'element-ui/lib/locale/lang/en'
 import components from './components'
 import router from './router'
 import store from './store'
@@ -32,7 +33,7 @@ class Base {
       this.store_.dispatch('bsShell/loadEnd')
     })
 
-    Vue.use(ElementUI, { size: 'small' })
+    Vue.use(ElementUI, { size: 'small', locale })
   }
 }
 
