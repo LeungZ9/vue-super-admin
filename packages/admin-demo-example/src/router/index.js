@@ -23,5 +23,9 @@ export default [
     path: '/tabs',
     name: 'tabs',
     component: tabs
+  },
+  {
+    path: '*',
+    redirect: { name: 'dialog' }
   }
 ]

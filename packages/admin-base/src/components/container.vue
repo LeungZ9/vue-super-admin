@@ -53,6 +53,7 @@ export default {
     left: $aside-collapsed-w;
   }
   &-body {
+    height: 100%;
     margin-left: $menubar-w;
   }
 }
@@ -63,6 +64,10 @@ export default {
   justify-content: space-between;
   border-bottom: 1px solid #eee;
   align-items: center;
+}
+.el-container,
+.el-main {
+  height: 100%;
 }
 .el-breadcrumb {
   font-size: 12px;

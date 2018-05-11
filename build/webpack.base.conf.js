@@ -12,7 +12,7 @@ const createLintingRule = () => ({
   test: /\.(js|vue)$/,
   loader: 'eslint-loader',
   enforce: 'pre',
-  include: [resolve('packages/admin-base/src'), resolve('packages/admin-demo-example/src')],
+  include: [resolve('packages/admin-base/src'), resolve('packages/admin-demo-example/src'), resolve('packages/admin-demo-chart/src')],
   options: {
     formatter: require('eslint-friendly-formatter'),
     emitWarning: !config.dev.showEslintErrorsInOverlay
@@ -22,7 +22,8 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    'demo-example': resolve('packages/admin-demo-example/src/main.js')
+    'demo-example': resolve('packages/admin-demo-example/src/main.js'),
+    'demo-chart': resolve('packages/admin-demo-chart/src/main.js')
   },
   output: {
     path: config.build.assetsRoot,
@@ -35,8 +36,10 @@ module.exports = {
     extensions: ['.js', '.vue', '.json', '.scss'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
+      // 'echarts$': 'echarts/lib/echarts',
       '@base': resolve('packages/admin-base/src'),
       '@demo-example': resolve('packages/admin-demo-example/src'),
+      '@demo-chart': resolve('packages/admin-demo-chart/src'),
     }
   },
   module: {
@@ -50,7 +53,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('packages/admin-base/src'), resolve('packages/admin-demo-example/src'), resolve('node_modules/webpack-dev-server/client')]
+        include: [resolve('packages/admin-base/src'), resolve('packages/admin-demo-example/src'), resolve('packages/admin-demo-chart/src'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
