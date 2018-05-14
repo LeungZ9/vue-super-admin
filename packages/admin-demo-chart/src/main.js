@@ -4,8 +4,8 @@ import Vue from 'vue'
 import Base from 'admin-base'
 import router from './router'
 import chart from 'vue-echarts-lite'
-// import 'echarts/lib/chart/line'
-// import 'echarts/lib/component/tooltip'
+import 'echarts/lib/chart/line'
+import 'echarts/lib/component/tooltip'
 
 Vue.config.productionTip = false
 

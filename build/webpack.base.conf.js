@@ -36,7 +36,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json', '.scss'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      // 'echarts$': 'echarts/lib/echarts',
+      'echarts$': 'echarts/lib/echarts',
       '@base': resolve('packages/admin-base/src'),
       '@demo-example': resolve('packages/admin-demo-example/src'),
       '@demo-chart': resolve('packages/admin-demo-chart/src'),
