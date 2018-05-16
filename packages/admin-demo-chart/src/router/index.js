@@ -1,13 +1,13 @@
-import chart from '@demo-chart/components/chart'
+import line from '@demo-chart/components/line'
 
 export default [
   {
-    path: '/chart',
-    name: 'chart',
-    component: chart
+    path: '/line',
+    name: 'line',
+    component: line
   },
   {
     path: '*',
-    redirect: { name: 'chart' }
+    redirect: { name: 'line' }
   }
 ]

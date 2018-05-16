@@ -12,11 +12,12 @@
       </div>
       <el-container v-else>
         <el-header class="padding-h-3">
-          <div>富文本编辑器</div>
+          <div>{{header.bcFoot}}</div>
           <div>
             <el-breadcrumb>
-              <el-breadcrumb-item>组件</el-breadcrumb-item>
-              <el-breadcrumb-item>富文本编辑器</el-breadcrumb-item>
+              <el-breadcrumb-item :to="{path:'/'}">{{header.bcHead}}</el-breadcrumb-item>
+              <el-breadcrumb-item v-for="item in header.bcBody" :key="item.id">{{item.name}}</el-breadcrumb-item>
+              <el-breadcrumb-item>{{header.bcFoot}}</el-breadcrumb-item>
             </el-breadcrumb>
           </div>
         </el-header>
@@ -33,7 +34,16 @@ import { mapState } from 'vuex'
 export default {
   computed: mapState({
     loading: state => state.bsShell.loading,
-    collapse: state => state.bsMenu.collapse
+    collapse: state => state.bsMenu.collapse,
+    header: state => {
+      const current = state.bsMenu.current
+      const last = state.bsMenu.current.length - 1
+      return {
+        bcHead: current[0] && current[0].name,
+        bcBody: current.slice(1, last),
+        bcFoot: current[last] && current[last].name
+      }
+    }
   }),
   components: {
     menubar
@@ -113,9 +123,9 @@ export default {
   }
   @for $i from 1 through 3 {
     &#{$i} {
-      transform: rotateZ(#{90*$i}deg);
+      transform: rotateZ(#{90 * $i}deg);
       &:before {
-        animation-delay: #{0.3*$i}s;
+        animation-delay: #{0.3 * $i}s;
       }
     }
   }

@@ -1,10 +1,11 @@
 <template>
   <aside :class="{'aside-collapsed':collapse}">
     <div class="aside-wrapper">
-      <el-menu :collapse="collapse">
-        <el-menu-item :index="item.code" v-for="item in menu" :key="item.code">
+      <el-menu :collapse="collapse" :default-active="active">
+        <el-menu-item :index="item.url" v-for="item in menu" :key="item.id">
+          <a class="aside-link" :href="item.url"></a>
           <i :class="item.icon"></i>
-          <span slot="title">{{item.name}}</span>
+          <span>{{item.name}}</span>
         </el-menu-item>
       </el-menu>
     </div>
@@ -15,18 +16,22 @@
 </template>
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
+
 export default {
   computed: {
     ...mapState({
-      collapse: state => state.bsMenu.collapse
+      collapse: state => state.bsMenu.collapse,
+      active: state => state.bsMenu.current[0] && state.bsMenu.current[0].url
     }),
     ...mapGetters({
       menu: 'bsMenu/menu'
     })
   },
-  methods: mapActions({
-    toggle: 'bsMenu/toggleCollapse'
-  })
+  methods: {
+    ...mapActions({
+      toggle: 'bsMenu/toggleCollapse'
+    })
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -48,6 +53,13 @@ aside {
     overflow-x: hidden;
     overflow-y: auto;
   }
+  &-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
   &-toggle {
     text-align: center;
     background: $aside-menu-bg;
@@ -62,6 +74,7 @@ aside {
   width: 100%;
   transition: none;
   &-item {
+    position: relative;
     font-size: 12px;
     color: #fff;
     height: $aside-menuItem-h;

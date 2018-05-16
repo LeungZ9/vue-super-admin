@@ -1,25 +1,32 @@
 <template>
   <nav class="menu">
-    <div class="menu-header padding-h-2">组件</div>
+    <div class="menu-header padding-h-2">{{menu.name}}</div>
     <div class="menu-body" >
-      <el-menu>
-        <el-menu-item @click="routerTo(item.url)" :index="item.code" v-for="item in menu" :key="item.code">{{item.name}}</el-menu-item>
+      <el-menu :default-active="active">
+        <el-menu-item @click="routerTo(item.url)" :index="item.url" v-for="item in menu.items" :key="item.id">{{item.name}}</el-menu-item>
       </el-menu>
     </div>
   </nav>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
       menu: 'bsMenu/subMenu'
+    }),
+    ...mapState({
+      params: state => state.params,
+      active: state => {
+        const last = state.bsMenu.current.length - 1
+        return state.bsMenu.current[last] && state.bsMenu.current[last].url
+      }
     })
   },
   methods: {
     routerTo(url) {
-      this.$router.push({ path: url })
+      this.$router.push({ name: url, params: this.params })
     }
   }
 }

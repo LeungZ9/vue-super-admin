@@ -2,14 +2,13 @@
   {
     "id": 1,
     "name": "Example",
-    "code": "example",
+    "url": "/demo-example.html",
     "icon": "el-icon-menu",
     "parent": null
   },
   {
     "id": 2,
     "name": "Dialog",
-    "code": "dialog",
     "url": "dialog",
     "icon": "",
     "parent": 1
@@ -17,7 +16,6 @@
   {
     "id": 3,
     "name": "Form",
-    "code": "form",
     "url": "form",
     "icon": "",
     "parent": 1
@@ -25,7 +23,6 @@
   {
     "id": 4,
     "name": "Table",
-    "code": "table",
     "url": "table",
     "icon": "",
     "parent": 1
@@ -33,7 +30,6 @@
   {
     "id": 5,
     "name": "Tabs",
-    "code": "tabs",
     "url": "tabs",
     "icon": "",
     "parent": 1
@@ -41,8 +37,15 @@
   {
     "id": 6,
     "name": "Chart",
-    "code": "chart",
+    "url": "/demo-chart.html",
     "icon": "el-icon-news",
     "parent": null
+  },
+  {
+    "id": 7,
+    "name": "Line",
+    "url": "line",
+    "icon": "",
+    "parent": 6
   }
 ]

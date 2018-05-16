@@ -27,6 +27,7 @@ class Base {
       if (!this.store_.state.bsMenu.data.length) {
         this.store_.dispatch('bsMenu/setData', await import('./mock/menu.json'))
       }
+      this.store_.dispatch('bsMenu/setCurrent', to)
       next()
     })
     this.router_.afterEach((to, from) => {
