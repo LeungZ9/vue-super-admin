@@ -1,0 +1,20 @@
+{
+  "name": "{{prefix}}{{name}}",
+  "version": "1.0.0",
+  "description": "{{description}}",
+  "author": "{{author}}",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "{{prefix}}base": "^1.0.0"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
