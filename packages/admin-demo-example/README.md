@@ -1,3 +1,3 @@
-# admin-demo-comp
+# admin-demo-example
 
-> admin-demo-comp
+> admin-demo-example

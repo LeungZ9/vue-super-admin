@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const packages = require('./packages')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -12,7 +13,7 @@ const createLintingRule = () => ({
   test: /\.(js|vue)$/,
   loader: 'eslint-loader',
   enforce: 'pre',
-  include: [resolve('packages/admin-base/src'), resolve('packages/admin-demo-example/src'), resolve('packages/admin-demo-chart/src')],
+  include: packages.include,
   options: {
     formatter: require('eslint-friendly-formatter'),
     emitWarning: !config.dev.showEslintErrorsInOverlay
@@ -21,10 +22,7 @@ const createLintingRule = () => ({
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
-  entry: {
-    'demo-example': resolve('packages/admin-demo-example/src/main.js'),
-    'demo-chart': resolve('packages/admin-demo-chart/src/main.js')
-  },
+  entry: Object.assign({}, packages.entry),
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -34,13 +32,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.vue', '.json', '.scss'],
-    alias: {
+    alias: Object.assign({
       'vue$': 'vue/dist/vue.esm.js',
-      'echarts$': 'echarts/lib/echarts',
-      '@base': resolve('packages/admin-base/src'),
-      '@demo-example': resolve('packages/admin-demo-example/src'),
-      '@demo-chart': resolve('packages/admin-demo-chart/src'),
-    }
+      'echarts$': 'echarts/lib/echarts'
+    }, packages.alias)
   },
   module: {
     rules: [
@@ -53,7 +48,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('packages/admin-base/src'), resolve('packages/admin-demo-example/src'), resolve('packages/admin-demo-chart/src'), resolve('node_modules/webpack-dev-server/client')]
+        include: [resolve('node_modules/webpack-dev-server/client')].concat(packages.include)
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
