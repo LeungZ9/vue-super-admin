@@ -54,8 +54,10 @@ inquirer.prompt([{
         done()
       } catch (e) {
         console.log(chalk.red(`  ${e.message}\n`))
+        process.exit(1)
       }
     }).build(err => {
-      console.log(chalk.cyan('  Generate complete, please run npm install again\n'))
+      console.log(chalk.cyan('  Generate complete, please run npm install again'))
+      console.log(chalk.cyan(`  For this module access permission, please add item into (Default: /packages/${env.PREFIX}base/src/mock/menu.json)\n`))
     })
 })
