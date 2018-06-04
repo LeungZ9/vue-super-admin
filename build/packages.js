@@ -18,7 +18,7 @@ if (pModule) {
         alias[ele.replace(env.PREFIX, '@')] = path.resolve(env.PACKAGE_PATH, `./${ele}/src`)
         entry[ele.replace(env.PREFIX, '')] = path.resolve(env.PACKAGE_PATH, `./${ele}/src/main.js`)
       } else {
-        throw ('Cannot find this module in packages.')
+        throw (`Cannot find this module: '${ele}' in packages.`)
       }
     })
     alias[`@base`] = path.resolve(env.PACKAGE_PATH, `./${env.PREFIX}base/src`)
