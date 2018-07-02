@@ -38,7 +38,7 @@
     "id": 6,
     "name": "Chart",
     "url": "/demo-chart.html",
-    "icon": "el-icon-news",
+    "icon": "el-icon-menu",
     "parent": null
   },
   {
@@ -47,5 +47,26 @@
     "url": "line",
     "icon": "",
     "parent": 6
+  },
+  {
+    "id": 8,
+    "name": "Feature",
+    "url": "/demo-feature.html",
+    "icon": "el-icon-menu",
+    "parent": null
+  },
+  {
+    "id": 9,
+    "name": "子级页面",
+    "url": "cpList",
+    "icon": "",
+    "parent": 8
+  },
+  {
+    "id": 10,
+    "name": "子级菜单",
+    "url": "cmList",
+    "icon": "",
+    "parent": 8
   }
 ]

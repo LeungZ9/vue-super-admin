@@ -1,7 +1,8 @@
 import * as types from '../mutation-types'
 
 const state = {
-  loading: false
+  loading: false,
+  header: ''
 }
 
 const actions = {
@@ -10,6 +11,9 @@ const actions = {
   },
   loadEnd({ commit }) {
     commit(types.SHELL_LOAD_END)
+  },
+  setHeader({ commit }, data) {
+    commit(types.SHELL_SET_HEADER, data)
   }
 }
 
@@ -19,6 +23,9 @@ const mutations = {
   },
   [types.SHELL_LOAD_END](state) {
     state.loading = false
+  },
+  [types.SHELL_SET_HEADER](state, data) {
+    state.header = data
   }
 }
 

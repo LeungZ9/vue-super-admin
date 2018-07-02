@@ -17,10 +17,10 @@ export default {
       menu: 'bsMenu/subMenu'
     }),
     ...mapState({
-      params: state => state.params,
+      params: state => state.bsMenu.params,
       active: state => {
-        const last = state.bsMenu.current.length - 1
-        return state.bsMenu.current[last] && state.bsMenu.current[last].url
+        const last = state.bsMenu.current[state.bsMenu.current.length - 1]
+        return last && last.url
       }
     })
   },
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "~@base/theme/var";
+@import '~@base/theme/var';
 .menu {
   position: absolute;
   top: 0;

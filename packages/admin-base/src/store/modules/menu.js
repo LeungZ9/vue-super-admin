@@ -36,12 +36,13 @@ const mutations = {
   [types.MENU_SET_DATA](state, data) {
     state.data = data
   },
-  [types.MENU_TOGGLE_COLLAPSE](state, data) {
+  [types.MENU_TOGGLE_COLLAPSE](state) {
     state.collapse = !state.collapse
     localStorage.setItem(COLLAPSE_STORAGE, state.collapse)
   },
   [types.MENU_SET_CURRENT](state, data) {
-    const items = state.data.filter(ele => ele.url === data.name)
+    const name = data.name && data.name.split('.')[0]
+    const items = state.data.filter(ele => ele.url === name)
     let current = []
 
     for (let i in items) {

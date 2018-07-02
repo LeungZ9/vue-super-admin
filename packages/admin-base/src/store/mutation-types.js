@@ -4,3 +4,4 @@ export const MENU_SET_CURRENT = 'SET_CURRENT'
 
 export const SHELL_LOAD_START = 'LOAD_START'
 export const SHELL_LOAD_END = 'LOAD_END'
+export const SHELL_SET_HEADER = 'SET_HEADER'

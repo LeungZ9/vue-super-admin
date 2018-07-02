@@ -2,8 +2,6 @@ import Vuex from 'vuex'
 import bsMenu from './modules/menu'
 import bsShell from './modules/shell'
 
-const debug = process.env.NODE_ENV === 'development'
-
 export default (Vue, s) => {
   Vue.use(Vuex)
 
@@ -12,6 +10,6 @@ export default (Vue, s) => {
       bsMenu,
       bsShell
     }),
-    strict: debug
+    strict: process.env.NODE_ENV === 'development'
   })
 }

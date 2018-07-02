@@ -12,12 +12,18 @@
       </div>
       <el-container v-else>
         <el-header class="padding-h-3">
-          <div>{{header.bcFoot}}</div>
+          <div>
+            <router-link :to="{name:back, params:params}"
+            v-if="back"><i class="el-icon-arrow-left"></i></router-link>
+            {{title || this.bcLast}}
+          </div>
           <div>
             <el-breadcrumb>
-              <el-breadcrumb-item :to="{path:'/'}">{{header.bcHead}}</el-breadcrumb-item>
-              <el-breadcrumb-item v-for="item in header.bcBody" :key="item.id">{{item.name}}</el-breadcrumb-item>
-              <el-breadcrumb-item>{{header.bcFoot}}</el-breadcrumb-item>
+              <el-breadcrumb-item :to="{path:'/'}">{{bcFst}}</el-breadcrumb-item>
+              <template v-for="(item,index) in breadcrumb">
+                <el-breadcrumb-item :key="index" :to="{name: item.url, params:params}">{{item.name}}</el-breadcrumb-item>
+              </template>
+              <el-breadcrumb-item >{{bcLast}}</el-breadcrumb-item>
             </el-breadcrumb>
           </div>
         </el-header>
@@ -32,17 +38,34 @@
 import menubar from './menubar'
 import { mapState } from 'vuex'
 export default {
+  data() {
+    return {
+      bcFst: '',
+      bcLast: '',
+      back: ''
+    }
+  },
   computed: mapState({
+    title: state => state.bsShell.header,
     loading: state => state.bsShell.loading,
+    params: state => state.bsMenu.params,
     collapse: state => state.bsMenu.collapse,
-    header: state => {
+    breadcrumb: function(state) {
       const current = state.bsMenu.current
-      const last = state.bsMenu.current.length - 1
-      return {
-        bcHead: current[0] && current[0].name,
-        bcBody: current.slice(1, last),
-        bcFoot: current[last] && current[last].name
+      const last = current.length - 1
+      if (~last) {
+        let back = ''
+        if (~this.$route.name.indexOf('.')) {
+          back = current[last].url
+        }
+        if (current.length > 3) {
+          back = current[current.length - 2].url
+        }
+        this.back = back
+        this.bcFst = current[0].name
+        this.bcLast = current[last].name
       }
+      return current.slice(1, last)
     }
   }),
   components: {
@@ -51,7 +74,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "~@base/theme/var";
+@import '~@base/theme/var';
 .container {
   position: absolute;
   left: $aside-w;
@@ -111,7 +134,7 @@ export default {
   width: 50%;
   height: 50%;
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
