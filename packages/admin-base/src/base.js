@@ -1,6 +1,6 @@
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/en'
-import components from './components'
+import comp from './components'
 import router from './router'
 import store from './store'
 
@@ -16,7 +16,7 @@ class Base {
     return this.store_
   }
   get comp() {
-    return components
+    return comp.local
   }
   install(Vue, opts = {}) {
     this.router_ = router(Vue, opts.router)
@@ -35,6 +35,7 @@ class Base {
       this.store_.dispatch('bsShell/loadEnd')
     })
 
+    Vue.use(comp.global)
     Vue.use(ElementUI, { size: 'small', locale })
   }
 }

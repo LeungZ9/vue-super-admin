@@ -6,7 +6,7 @@
       <el-table-column prop="address" label="Address"></el-table-column>
       <el-table-column label="Detail">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">Click into detail</el-button>
+          <el-button @click="handleClick(scope.row)" type="text" size="small">Click into detial</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -16,7 +16,7 @@
 export default {
   methods: {
     handleClick(row) {
-      this.$router.push({ name: 'cpList.detail', params: { name: row.name } })
+      this.$router.push({ name: 'cmDetail', params: { name: row.name } })
     }
   },
   data() {
@@ -24,22 +24,22 @@ export default {
       tableData: [
         {
           date: '2016-05-03',
-          name: 'Tom',
+          name: 'Jeff',
           address: 'No. 189, Grove St, Los Angeles'
         },
         {
           date: '2016-05-02',
-          name: 'Jason',
-          address: 'No. 189, Grove St, Los Angeles'
-        },
-        {
-          date: '2016-05-04',
           name: 'Jack',
           address: 'No. 189, Grove St, Los Angeles'
         },
         {
+          date: '2016-05-04',
+          name: 'Jason',
+          address: 'No. 189, Grove St, Los Angeles'
+        },
+        {
           date: '2016-05-01',
-          name: 'Jeff',
+          name: 'Tom',
           address: 'No. 189, Grove St, Los Angeles'
         }
       ]

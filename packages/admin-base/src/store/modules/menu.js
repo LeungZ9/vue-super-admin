@@ -2,6 +2,10 @@ import * as types from '../mutation-types'
 const COLLAPSE_STORAGE = 'menuCollapse'
 const PROTOCOL_REGEX = new RegExp('^https?://', 'i')
 
+const getByParent = function(state, id) {
+  return state.data.filter(ele => ele.parent === id)
+}
+
 const state = {
   data: [],
   collapse: localStorage.getItem(COLLAPSE_STORAGE) === 'true' || false,
@@ -10,14 +14,8 @@ const state = {
 }
 
 const getters = {
-  menu: state => {
-    return state.data.filter(ele => ele.parent === null)
-  },
-  subMenu: state => {
-    const parent = state.current[state.current.length - 2]
-    const items = parent ? state.data.filter(ele => ele.parent === parent.id) : []
-    return Object.assign({}, parent, { items })
-  }
+  menu: state => getByParent(state, null),
+  menuByParent: state => id => getByParent(state, id)
 }
 
 const actions = {
@@ -57,10 +55,12 @@ const mutations = {
         if (~pre) {
           current = state.current.slice(0, pre + 1).concat(current)
           break
-        } else current.unshift(item)
+        } else item.url && current.unshift(item)
       }
 
-      url = PROTOCOL_REGEX.test(current[0].url) ? new URL(current[0].url) : new URL(current[0].url, location.origin)
+      url = PROTOCOL_REGEX.test(current[0].url)
+        ? new URL(current[0].url)
+        : new URL(current[0].url, location.origin)
       if (url.pathname === location.pathname) break
     }
 

@@ -58,7 +58,7 @@ export default {
         if (~this.$route.name.indexOf('.')) {
           back = current[last].url
         }
-        if (current.length > 3) {
+        if (current.length > 2) {
           back = current[current.length - 2].url
         }
         this.back = back

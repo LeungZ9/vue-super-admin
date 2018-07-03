@@ -4,42 +4,51 @@
       <el-table-column prop="date" label="Date"></el-table-column>
       <el-table-column prop="name" label="Name"></el-table-column>
       <el-table-column prop="address" label="Address"></el-table-column>
-      <el-table-column label="Detail">
-        <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">Click into detail</el-button>
-        </template>
-      </el-table-column>
     </el-table>
+    <pre ref="pre">
+      <code class="javascript">
+        // There is a shell to enable when next delays in beforeRouteEnter as below
+        beforeRouteEnter(to, from, next) {
+          setTimeout(() => {
+            next()
+          }, 3000)
+        }
+      </code>
+    </pre>
   </div>
 </template>
 <script>
+import hljs from '@demo-feature/util/hljs'
 export default {
-  methods: {
-    handleClick(row) {
-      this.$router.push({ name: 'cpList.detail', params: { name: row.name } })
-    }
+  mounted() {
+    hljs.highlightBlock(this.$refs.pre)
+  },
+  beforeRouteEnter(to, from, next) {
+    setTimeout(() => {
+      next()
+    }, 3000)
   },
   data() {
     return {
       tableData: [
         {
           date: '2016-05-03',
-          name: 'Tom',
+          name: 'Jeff',
           address: 'No. 189, Grove St, Los Angeles'
         },
         {
           date: '2016-05-02',
-          name: 'Jason',
-          address: 'No. 189, Grove St, Los Angeles'
-        },
-        {
-          date: '2016-05-04',
           name: 'Jack',
           address: 'No. 189, Grove St, Los Angeles'
         },
         {
+          date: '2016-05-04',
+          name: 'Jason',
+          address: 'No. 189, Grove St, Los Angeles'
+        },
+        {
           date: '2016-05-01',
-          name: 'Jeff',
+          name: 'Tom',
           address: 'No. 189, Grove St, Los Angeles'
         }
       ]
@@ -47,3 +56,9 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.el-table{
+  padding-bottom: 24px;
+  border-bottom: 1.1px solid #ccc;
+}
+</style>
