@@ -7,6 +7,7 @@ const getByParent = function(state, id) {
 }
 
 const state = {
+  hidden: false,
   data: [],
   collapse: localStorage.getItem(COLLAPSE_STORAGE) === 'true' || false,
   current: [],
@@ -22,8 +23,12 @@ const actions = {
   setData({ commit }, data) {
     commit(types.MENU_SET_DATA, data)
   },
+  setHidden({ commit }, data) {
+    commit(types.MENU_SET_HIDDEN, data)
+  },
   setCurrent({ commit }, data) {
     commit(types.MENU_SET_CURRENT, data)
+    commit(types.MENU_SET_HIDDEN, false)
   },
   toggleCollapse({ commit }) {
     commit(types.MENU_TOGGLE_COLLAPSE)
@@ -33,6 +38,9 @@ const actions = {
 const mutations = {
   [types.MENU_SET_DATA](state, data) {
     state.data = data
+  },
+  [types.MENU_SET_HIDDEN](state, data) {
+    state.hidden = !!data
   },
   [types.MENU_TOGGLE_COLLAPSE](state) {
     state.collapse = !state.collapse

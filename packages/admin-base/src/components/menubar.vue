@@ -32,8 +32,7 @@ export default {
         const parent = state.bsMenu.current[state.bsMenu.current.length - 2]
         if (!parent) {
           this.menu = []
-        }
-        if (parent && this.parent !== parent) {
+        } else if (this.parent !== parent) {
           this.menu = this.getMenu(parent.id)
         }
         this.parent = parent || {}

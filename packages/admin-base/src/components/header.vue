@@ -1,7 +1,8 @@
 <template>
   <header class="padding-h-3">
-    <div class="header-brand" @click="$router.go(0)">{{brand}}</div>
-    <div></div>
+    <div class="header-left" @click="$router.go(0)">{{brand}}</div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
   </header>
 </template>
 <script>
@@ -14,7 +15,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "~@base/theme/var";
+@import '~@base/theme/var';
 header {
   position: fixed;
   top: 0;
@@ -27,7 +28,7 @@ header {
   background: $header-bg;
 }
 .header {
-  &-brand {
+  &-left {
     color: #fff;
     font-size: 20px;
     font-weight: bold;
@@ -35,6 +36,12 @@ header {
     width: #{$theme-radix * 27}px;
     cursor: pointer;
     border-right: 1.1px solid $header-item-border;
+  }
+  &-center {
+    flex: 1;
+  }
+  &-right {
+    width: auto;
   }
 }
 </style>

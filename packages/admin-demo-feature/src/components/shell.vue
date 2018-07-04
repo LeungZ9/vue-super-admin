@@ -7,7 +7,7 @@
     </el-table>
     <pre ref="pre">
       <code class="javascript">
-        // There is a shell to enable when next delays in beforeRouteEnter as below
+        // To enable shell when next delays in beforeRouteEnter as below
         beforeRouteEnter(to, from, next) {
           setTimeout(() => {
             next()

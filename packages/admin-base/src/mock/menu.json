@@ -103,12 +103,5 @@
     "url": "permission",
     "icon": "",
     "parent": 14
-  },
-  {
-    "id": 16,
-    "name": "Permission Test",
-    "url": "permissionTest",
-    "icon": "",
-    "parent": 14
   }
 ]

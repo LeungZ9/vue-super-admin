@@ -46,7 +46,7 @@ export default {
     }
   },
   computed: mapState({
-    title: state => state.bsShell.header,
+    title: state => state.bsHead.title,
     loading: state => state.bsShell.loading,
     params: state => state.bsMenu.params,
     collapse: state => state.bsMenu.collapse,

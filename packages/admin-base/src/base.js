@@ -28,7 +28,7 @@ class Base {
         this.store_.dispatch('bsMenu/setData', await import('./mock/menu.json'))
       }
       this.store_.dispatch('bsMenu/setCurrent', to)
-      this.store_.dispatch('bsShell/setHeader', '')
+      this.store_.dispatch('bsHead/setTitle', '')
       next()
     })
     this.router_.afterEach((to, from) => {

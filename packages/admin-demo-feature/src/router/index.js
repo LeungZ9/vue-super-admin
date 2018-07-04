@@ -4,6 +4,8 @@ import cmDetail from '@demo-feature/components/child-menu/detail'
 import cmMore from '@demo-feature/components/child-menu/more'
 import cpList from '@demo-feature/components/child-page/list'
 import cpDetail from '@demo-feature/components/child-page/detail'
+import permission from '@demo-feature/components/permission/permission'
+import permissionTest from '@demo-feature/components/permission/permissionTest'
 
 export default [
   {
@@ -35,6 +37,16 @@ export default [
     path: '/shell',
     name: 'shell',
     component: shell
+  },
+  {
+    path: '/permission',
+    name: 'permission',
+    component: permission
+  },
+  {
+    path: '/permission/test',
+    name: 'permissionTest',
+    component: permissionTest
   },
   {
     path: '*',

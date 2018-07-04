@@ -6,7 +6,7 @@
       <el-table-column prop="address" label="Address"></el-table-column>
       <el-table-column label="Detail">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">Click into detail</el-button>
+          <el-button @click="handleClick(scope.row)" type="text">Click into detail</el-button>
         </template>
       </el-table-column>
     </el-table>

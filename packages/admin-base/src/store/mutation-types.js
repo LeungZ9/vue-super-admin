@@ -1,7 +1,10 @@
 export const MENU_TOGGLE_COLLAPSE = 'TOGGLE_COLLAPSE'
 export const MENU_SET_DATA = 'SET_DATA'
 export const MENU_SET_CURRENT = 'SET_CURRENT'
+export const MENU_SET_HIDDEN = 'SET_HIDDEN'
 
 export const SHELL_LOAD_START = 'LOAD_START'
 export const SHELL_LOAD_END = 'LOAD_END'
-export const SHELL_SET_HEADER = 'SET_HEADER'
+
+export const HEAD_SET_TITLE = 'SET_TITLE'
+export const HEAD_SET_HIDDEN = 'SET_HIDDEN'

@@ -23,8 +23,14 @@
     <pre ref="pre2">
       <code class="javascript">
         // For '子级页面', you should set header title by yourself as below
+        import { mapActions } from 'vuex'
         mounted() {
-           this.setHeader('Detail')
+           this.setTitle('Detail')
+        }
+        methods: {
+          ...mapActions({
+            setTitle: 'bsHead/setTitle'
+          })
         }
       </code>
     </pre>
@@ -35,13 +41,13 @@ import { mapActions } from 'vuex'
 import hljs from '@demo-feature/util/hljs'
 export default {
   mounted() {
-    this.setHeader('Detail')
+    this.setTitle('Detail')
     hljs.highlightBlock(this.$refs.pre1)
     hljs.highlightBlock(this.$refs.pre2)
   },
   methods: {
     ...mapActions({
-      setHeader: 'bsShell/setHeader'
+      setTitle: 'bsHead/setTitle'
     })
   }
 }
