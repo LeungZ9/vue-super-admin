@@ -60,6 +60,5 @@ export default {
 <style lang="scss">
 .el-button {
   margin-left: 8px;
-  text-decoration: none;
 }
 </style>

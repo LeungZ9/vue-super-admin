@@ -1,7 +1,7 @@
 <template>
-  <div class="container" :class="{'container-expand':collapse}">
-    <menubar></menubar>
-    <div class="container-body">
+  <div class="container" :class="{'container--expand':collapse}">
+    <menubar v-if="!menuHidden"></menubar>
+    <div class="container-body" :class="{'container-body--full':menuHidden}">
       <div v-if="loading" class="loading">
         <div class="loading-body">
           <div class="cube"></div>
@@ -11,7 +11,7 @@
         </div>
       </div>
       <el-container v-else>
-        <el-header class="padding-h-3">
+        <el-header v-if="!headHidden" class="padding-h-3">
           <div>
             <router-link :to="{name:back, params:params}"
             v-if="back"><i class="el-icon-arrow-left"></i></router-link>
@@ -46,6 +46,8 @@ export default {
     }
   },
   computed: mapState({
+    menuHidden: state => state.bsHead.hidden,
+    headHidden: state => state.bsMenu.hidden,
     title: state => state.bsHead.title,
     loading: state => state.bsShell.loading,
     params: state => state.bsMenu.params,
@@ -82,12 +84,15 @@ export default {
   bottom: 0;
   right: 0;
   transition: left 0.3s ease;
-  &-expand {
+  &--expand {
     left: $aside-collapsed-w;
   }
   &-body {
     height: 100%;
     margin-left: $menubar-w;
+    &--full {
+      margin-left: 0;
+    }
   }
 }
 .el-header {

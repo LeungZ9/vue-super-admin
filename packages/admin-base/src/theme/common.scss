@@ -16,6 +16,10 @@ body {
   }
 }
 
+a.el-button{
+  text-decoration: none;
+}
+
 @for $i from 1 through 3 {
   .padding-#{$i} {
     padding: #{$i * $theme-radix}px;

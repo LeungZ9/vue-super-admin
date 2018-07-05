@@ -1,8 +1,14 @@
 <template>
-  <code>Here is just a simple example from <a href="http://element-cn.eleme.io/#/en-US/" target="_blank">element</a>, please refer to this <a href="http://element-cn.eleme.io/#/en-US/component" target="_blank">link</a> for more detail</code>
+  <code v-html="content"></code>
 </template>
 <script>
 export default {
+  props: {
+    content:{
+      type: String,
+      default: 'Here is just a simple example from <a href="http://element-cn.eleme.io/#/en-US/" target="_blank">element</a>, please refer to this <a href="http://element-cn.eleme.io/#/en-US/component" target="_blank">link</a> for more detail'
+    }
+  },
   name: 'description'
 }
 </script>

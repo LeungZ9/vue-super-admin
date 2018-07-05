@@ -35,6 +35,13 @@
     "parent": 1
   },
   {
+    "id": 16,
+    "name": "Store",
+    "url": "store",
+    "icon": "",
+    "parent": 1
+  },
+  {
     "id": 6,
     "name": "Chart",
     "url": "/demo-chart.html",
