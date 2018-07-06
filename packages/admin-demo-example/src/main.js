@@ -3,11 +3,13 @@
 import Vue from 'vue'
 import Base from 'admin-base'
 import router from './router'
+import store from './store'
 
 Vue.config.productionTip = false
 
 Vue.use(Base, {
-  router
+  router,
+  store
 })
 
 /* eslint-disable no-new */
