@@ -1,5 +1,4 @@
 import ElementUI from 'element-ui'
-import locale from 'element-ui/lib/locale/lang/en'
 import comp from './components'
 import router from './router'
 import store from './store'
@@ -23,7 +22,7 @@ class Base {
     this.router_ = router(Vue, opts.router, this.store_)
 
     Vue.use(comp.global)
-    Vue.use(ElementUI, { size: 'small', locale })
+    Vue.use(ElementUI, { size: 'small' })
   }
 }
 
