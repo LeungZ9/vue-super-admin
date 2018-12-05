@@ -2,7 +2,7 @@
   <nav class="menu">
     <div class="menu-header padding-h-2">{{parent.name}}</div>
     <div class="menu-body" >
-      <el-menu :default-active="active">
+      <el-menu @select="routerTo" :default-active="active">
         <bs-menu-item v-for="item in setMenu" :item="item" :key="item.id"></bs-menu-item>
       </el-menu>
     </div>
@@ -16,6 +16,15 @@ export default {
     return {
       parent: {},
       menu: []
+    }
+  },
+  methods: {
+    routerTo(url) {
+      let query = {}
+      if (this.$route.name === url && this.$store.state.bsShell.loading) {
+        query[new Date().getTime()] = null
+      }
+      this.$router.push({ name: url, params: this.params, query })
     }
   },
   computed: {

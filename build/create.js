@@ -4,7 +4,7 @@ const render = require('consolidate').handlebars.render
 const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
-const env = require('./env')
+const env = require('../config/package.env')
 
 const templatePath = path.resolve(__dirname, './.template')
 const packages = fs.readdirSync(env.PACKAGE_PATH)

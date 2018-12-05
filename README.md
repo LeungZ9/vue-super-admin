@@ -17,3 +17,7 @@ Import -> Enhance
 
 带有路由器和3个根组件的示例依赖关系树。根组件增强了路由。
 看看依赖关系图发生了什么，组件保持不变，但箭头指向相反的方向。因此，根组件会对路由使用 enhance 方式来声明自己，以取代让路由 import 根组件的方式。这意味着当我删除根组件时我仅需要删除相应文件即可。因为它不再 enhance 路由，当我们删除组件时，这是唯一需要做的操作。
+
+---
+## A large JavaScript Application - multiple platform within one portal
+Here is the architecture:
