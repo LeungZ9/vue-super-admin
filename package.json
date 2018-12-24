@@ -4,7 +4,7 @@
   "description": "vue-super-admin is an admin console demo, based on Vue.js and use the UI Toolkit -- element, to reduce coupling with multiple module in a huge platform",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --open --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "build": "node build/build.js",
     "postinstall": "lerna bootstrap",
     "create": "node build/create.js"

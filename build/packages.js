@@ -1,43 +1,36 @@
 const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
-const env = require('./env')
-const packages = fs.readdirSync(env.PACKAGE_PATH)
-const pModule = process.env.npm_config_module
+const env = require('../config/package.env')
+let modules = process.env.npm_config_module
+let packages = fs.readdirSync(env.PACKAGE_PATH)
 
-const alias = {}
-const entry = {}
-
-if (pModule) {
-  const pModules = pModule.split(',')
-  try {
-    pModules.forEach(ele => {
-      ele = ele.startsWith(env.PREFIX) ? ele : env.PREFIX + ele
-      if (~packages.indexOf(ele)) {
-        if (ele === `${env.PREFIX}base`) return
-        alias[ele.replace(env.PREFIX, '@')] = path.resolve(env.PACKAGE_PATH, `./${ele}/src`)
-        entry[ele.replace(env.PREFIX, '')] = path.resolve(env.PACKAGE_PATH, `./${ele}/src/main.js`)
-      } else {
-        throw (`Cannot find this module: '${ele}' in packages.`)
-      }
-    })
-    alias[`@base`] = path.resolve(env.PACKAGE_PATH, `./${env.PREFIX}base/src`)
-    console.log(chalk.cyan(`  Starting up with modules: ${Object.keys(alias).join(', ')}.`))
-  } catch (e) {
-    console.log(chalk.red(`  ${e}\n`))
-    process.exit(1)
-  }
-} else {
-  packages.forEach(ele => {
-    alias[ele.replace(env.PREFIX, '@')] = path.resolve(env.PACKAGE_PATH, `./${ele}/src`)
-    if (ele === `${env.PREFIX}base`) return
-    entry[ele.replace(env.PREFIX, '')] = path.resolve(env.PACKAGE_PATH, `./${ele}/src/main.js`)
-  })
+function packagePath(rPath) {
+  return path.resolve(env.PACKAGE_PATH, rPath)
 }
 
+if (modules) {
+  modules = modules
+    .split(',')
+    .map(e => (e.startsWith(env.PREFIX) ? e : env.PREFIX + e))
+  packages = packages.filter(e => ~modules.indexOf(e))
+}
+
+console.log(chalk.cyan(`  Starting up with modules: ${packages.join(', ')}.`))
+
+const entry = {}
+const alias = {}
+if (!~packages.indexOf(`${env.PREFIX}base`)) {
+  packages.push(`${env.PREFIX}base`)
+}
+packages.forEach(e => {
+  const name = e.replace(env.PREFIX, '')
+  alias[`@${name}`] = packagePath(`./${e}/src`)
+  entry[name] = packagePath(`./${e}/src/main.js`)
+})
 
 module.exports = {
-  alias,
   entry,
+  alias,
   include: Object.values(alias)
 }
