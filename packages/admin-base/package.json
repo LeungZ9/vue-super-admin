@@ -1,0 +1,15 @@
+{
+  "name": "admin-base",
+  "version": "1.0.0",
+  "description": "admin-base is a root package to inject basic logic for every module package",
+  "author": "LeungZ <LeungZ9@users.noreply.github.com>",
+  "main": "src/main.js",
+  "private": true,
+  "scripts": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+}

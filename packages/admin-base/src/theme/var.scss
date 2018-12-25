@@ -1,0 +1,21 @@
+$theme-color: #409eff;
+$theme-radix: 8;
+/* aside
+*****************/
+$aside-w: #{22 * $theme-radix}px;
+$aside-collapsed-w: #{8 * $theme-radix}px;
+$aside-bg: #333744;
+$aside-menu-bg: #4a5064;
+$aside-menuItem-h: #{6 * $theme-radix}px;
+$aside-menuItem-hover: mix(#fff, $aside-menu-bg, 20%);
+/* menubar
+*****************/
+$menubar-w: $aside-w;
+$menubar-bg: #fff;
+$menubar-head-h: $aside-menuItem-h;
+$menubar-menuItem-h: $aside-menuItem-h;
+/* header
+*****************/
+$header-h: #{6 * $theme-radix}px;
+$header-bg: #373d41;
+$header-item-border: mix(#000, $header-bg, 20%);

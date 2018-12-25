@@ -1,0 +1,40 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  background: #fff;
+  * {
+    box-sizing: border-box;
+  }
+}
+
+a.el-button{
+  text-decoration: none;
+}
+
+@for $i from 1 through 3 {
+  .padding-#{$i} {
+    padding: #{$i * $theme-radix}px;
+  }
+  .padding-h-#{$i} {
+    padding: 0 #{$i * $theme-radix}px;
+  }
+  .padding-v-#{$i} {
+    padding: #{$i * $theme-radix}px 0;
+  }
+  .margin-#{$i} {
+    padding: #{$i * $theme-radix}px;
+  }
+  .margin-h-#{$i} {
+    padding: 0 #{$i * $theme-radix}px;
+  }
+  .margin-v-#{$i} {
+    padding: #{$i * $theme-radix}px 0;
+  }
+}

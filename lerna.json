@@ -1,0 +1,6 @@
+{
+  "packages": [
+    "packages/admin-*"
+  ],
+  "version": "independent"
+}
