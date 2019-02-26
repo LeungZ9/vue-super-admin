@@ -1,23 +1,74 @@
 # vue-super-admin
 
-> vue-super-admin is an admin console demo, based on [Vue.js](https://github.com/vuejs/vue) and use the UI Toolkit -- [element](https://github.com/ElemeFE/element), to reduce coupling with multiple module in a huge platform
+> vue-super-admin is an admin console demo, based on [Vue.js](https://github.com/vuejs/vue) and use the UI Toolkit -- [element](https://github.com/ElemeFE/element), to reduce coupling with multiple platform in a huge portal.
 
-https://www.youtube.com/watch?v=ZZmUwXEiPm4
-https://pic1.zhimg.com/80/v2-bcadbd396f87f32009ba81b05e2fcf1c_hd.jpg
-https://pic3.zhimg.com/80/v2-8f224d5e5bef950f787a821f735abcf6_hd.jpg
-如上文所述，这里存在一个中心化 import 带来的问题。
-
-带有路由器和3个根组件的示例依赖关系树。由路由引入根组件。
-因为现在路由必须 import 所有的根组件，所以当你想删除其中一个（组件）时，你必须前往路由（所在的文件），删除所有 import 关系以及相应路径，于是你遇到了“2017年假日特别问题”。
-
-Import -> Enhance
-在 Google，我们已经为此提出了一个解决方案，在此向你们介绍一下，我想之前我们从来没有公开谈过这件事。我们创造了一个新概念，它被称为 enhance。你可以用它来替代 import。
-
-实际上，它与 import 正好相反。它是一个逆向依赖。如果你 enhance 一个模块，你会让这个模块对你产生依赖。
-
-带有路由器和3个根组件的示例依赖关系树。根组件增强了路由。
-看看依赖关系图发生了什么，组件保持不变，但箭头指向相反的方向。因此，根组件会对路由使用 enhance 方式来声明自己，以取代让路由 import 根组件的方式。这意味着当我删除根组件时我仅需要删除相应文件即可。因为它不再 enhance 路由，当我们删除组件时，这是唯一需要做的操作。
-
----
 ## A large JavaScript Application - multiple platform within one portal
-Here is the architecture:
+
+### Background
+In most of our system components, there are different teams to develop platform for corresponding component, below is an example of what I have been through:
+<pre>
+                ________        ________        ________        ________
+               |        |      |        |      |        |      |        |
+  Component    | DevOps |      |  DCOS  |      |  UDAL  |      |  ....  |
+               |________|      |________|      |________|      |________|
+                    |               |               |               |
+                ___\|/_____________\|/_____________\|/_____________\|/__
+               |                     API Gateway                        |
+               |________________________________________________________|
+                                           |
+                     ______________________|________________________
+                    |               |               |               |
+                    |               |               |               |
+                ___\|/__        ___\|/__        ___\|/__        ___\|/__
+               |        |      |        |      |        |      |        |
+      FE       | DevOps |      |  DCOS  |      |  UDAL  |      |  ....  |
+               | Admin  |      |  Admin |      |  Admin |      |  Admin |
+               |________|      |________|      |________|      |________|
+</pre>
+In fact, there are some of the same logic codes about theme, privilege, data process in these management platforms if in one portal.
+
+### Architecture
+There are two major packages here.
+1. Admin Base package: Admin Base is a root package to inject basic logic for every module package.
+2. Admin Module package: Admin Module is a platform or component module package to implement self business logic.
+
+Below is relationship between Admin Base and Admin Modules:
+<pre>
+                                    ______________
+                                   |              |
+                                   |  Admin Base  |
+                                   |______________|
+                                          /|\
+                                    import |
+            _______________________________|______________________________
+           |                    |                    |                    |
+           |                    |                    |                    |
+   ________|_______     ________|_______     ________|_______     ________|_________
+  |                |   |                |   |                |   |                  |
+  | Admin Module 1 |   | Admin Module 2 |   | Admin Module 3 |   | Admin Module ... |
+  |________________|   |________________|   |________________|   |__________________|
+</pre>
+
+For every module, it is like a single page application and only load self module and Admin Base as below:
+<pre>
+   _______________     ________________     ________________     ________________     __________________
+  |               |   |                |   |                |   |                |   |                  |
+  | Admin Base    |   | Admin Module 1 |   | Admin Module 2 |   | Admin Module 3 |   | Admin Module ... |
+  |_______________|   |________________|   |________________|   |________________|   |__________________|
+        /|\                   /|\                  /|\                  /|\                   /|\
+         |                     |                    |                    |                     |
+         |                     |                    |                    |                     |
+         |             ________|_______     ________|_______     ________|_______     _________|________
+         |            |                |   |                |   |                |   |                  |
+         |            | Admin Module 1 |   | Admin Module 2 |   | Admin Module 3 |   | Admin Module ... |
+         |            |   index.html   |   |   index.html   |   |   index.html   |   |    index.html    |
+         |            |________________|   |________________|   |________________|   |__________________|
+         |_____________________|____________________|____________________|_____________________|
+</pre>
+
+### How to use
+1. create your module package, run below commad and input package info.
+```bash
+    npm run create
+```
+

@@ -29,12 +29,12 @@ a.el-button{
     padding: #{$i * $theme-radix}px 0;
   }
   .margin-#{$i} {
-    padding: #{$i * $theme-radix}px;
+    margin: #{$i * $theme-radix}px;
   }
   .margin-h-#{$i} {
-    padding: 0 #{$i * $theme-radix}px;
+    margin: 0 #{$i * $theme-radix}px;
   }
   .margin-v-#{$i} {
-    padding: #{$i * $theme-radix}px 0;
+    margin: #{$i * $theme-radix}px 0;
   }
 }
