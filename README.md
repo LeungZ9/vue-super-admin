@@ -67,8 +67,26 @@ For every module, it is like a single page application and only load self module
 </pre>
 
 ### How to use
-1. create your module package, run below commad and input package info.
+1. Create module package, run below commad and input package info.
 ```bash
     npm run create
+```
+
+2. Develop module package
+```bash
+    npm run dev
+```
+It will serve all module packages by default, or using *--module* to serve the specified package.
+```bash
+    npm run dev --module=demo-chart,demo-example
+```
+
+3. Build your whole project
+```bash
+    npm run build
+```
+Using *--module* to build the specified package.
+```bash
+    npm run build --module=demo-chart,demo-example
 ```
 
