@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Example",
-    "url": "/demo-example.html",
+    "url": "demo-example.html",
     "icon": "el-icon-menu",
     "parent": null
   },
@@ -44,7 +44,7 @@
   {
     "id": 6,
     "name": "Chart",
-    "url": "/demo-chart.html",
+    "url": "demo-chart.html",
     "icon": "el-icon-menu",
     "parent": null
   },
@@ -58,7 +58,7 @@
   {
     "id": 8,
     "name": "Feature",
-    "url": "/demo-feature.html",
+    "url": "demo-feature.html",
     "icon": "el-icon-menu",
     "parent": null
   },

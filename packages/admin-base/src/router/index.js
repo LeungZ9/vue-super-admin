@@ -15,7 +15,14 @@ export default (Vue, r, store) => {
 
   router.beforeEach(async(to, from, next) => {
     if (!store.state.bsMenu.data.length) {
-      store.dispatch('bsMenu/setData', await import('@base/mock/menu.json'))
+      let data = sessionStorage.getItem('bs-menu-data')
+      if (data) {
+        data = JSON.parse(data)
+      } else {
+        data = await import('@base/mock/menu.json')
+        sessionStorage.setItem('bs-menu-data', JSON.stringify(data))
+      }
+      store.dispatch('bsMenu/setData', data)
     }
     if (~to.name.indexOf('bsError.')) return next()
 

@@ -4,6 +4,8 @@
 
 ## A large JavaScript Application - multiple platform within one portal
 
+**[Demo](https://leungz9.github.io/vue-super-admin/demo-example.html#/dialog)**
+
 ### Background
 In most of our system components, there are different teams to develop platform for corresponding component, below is an example of what I have been through:
 <pre>
