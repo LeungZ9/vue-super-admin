@@ -29,6 +29,8 @@ packages.forEach(e => {
   entry[name] = packagePath(`./${e}/src/main.js`)
 })
 
+delete entry.base
+
 module.exports = {
   entry,
   alias,
