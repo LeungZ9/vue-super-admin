@@ -1,1 +1,1 @@
-const packages = require('./packages.js')
+const { entry, alias } = require('./packages.js')
