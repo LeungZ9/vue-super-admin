@@ -16,12 +16,12 @@ export default {
   },
   mounted() {
     this.visibleCount = Math.ceil(this.$el.clientHeight / this.itemHeight)
-    this.start = 0;
+    this.start = 0
     this.end = this.start + this.visibleCount
     this.visibleData = this.data.slice(this.start, this.end)
   },
   data() {
-    const data = [];
+    const data = []
     for (let i = 0; i < 10000; i++) {
       data.push({ value: i })
     }
@@ -31,28 +31,33 @@ export default {
       end: null,
       visibleCount: null,
       visibleData: [],
-      scrollTop: 0
+      scrollTop: 0,
+      scrollTimer: 0
     }
   },
   methods: {
     handleScroll() {
-      const scrollTop = this.$refs.list.scrollTop
-      const fixedScrollTop = scrollTop - (scrollTop % this.itemHeight)
-      this.$refs.content.style.webkitTransform = `translate3d(0, ${fixedScrollTop}px, 0)`;
+      if (this.scrollTimer) return
+      setTimeout(() => {
+        const scrollTop = this.$refs.list.scrollTop
+        const fixedScrollTop = scrollTop - (scrollTop % this.itemHeight)
+        this.$refs.content.style.webkitTransform = `translate3d(0, ${fixedScrollTop}px, 0)`
 
-      this.start = Math.floor(scrollTop / this.itemHeight)
-      this.end = this.start + this.visibleCount;
-      this.visibleData = this.data.slice(this.start, this.end)
+        this.start = Math.floor(scrollTop / this.itemHeight)
+        this.end = this.start + this.visibleCount
+        this.visibleData = this.data.slice(this.start, this.end)
+
+        this.scrollTimer = 0
+      }, 32)
     }
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 .list-view {
-  height: 400px;
+  height: 100%;;
   overflow: auto;
   position: relative;
-  border: 1px solid #666;
   &-phantom {
     position: absolute;
     left: 0;

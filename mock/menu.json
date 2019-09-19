@@ -110,5 +110,12 @@
     "url": "permission",
     "icon": "",
     "parent": 14
+  },
+  {
+    "id": 16,
+    "name": "Long List",
+    "url": "list",
+    "icon": "",
+    "parent": 6
   }
 ]
