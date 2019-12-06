@@ -17,18 +17,18 @@ if (modules) {
   packages = packages.filter(e => ~modules.indexOf(e))
 }
 
-console.log(chalk.cyan(`  Starting up with modules: ${packages.join(', ')}.`))
+console.log(chalk.cyan(`  Modules: ${packages.join(', ')}.`))
 
 const entry = {}
 const alias = {}
-if (!~packages.indexOf(`${PACKAGE_PERFIX}base`)) {
-  packages.push(`${PACKAGE_PERFIX}base`)
-}
 packages.forEach(e => {
   const name = e.replace(PACKAGE_PERFIX, '')
   alias[`@${name}`] = packagePath(`./${e}/src`)
   entry[name] = packagePath(`./${e}/src/main.js`)
 })
+if (!~packages.indexOf(`${PACKAGE_PERFIX}base`)) {
+  alias[`@base`] = packagePath(`./${PACKAGE_PERFIX}base/src`)
+}
 
 module.exports = {
   entry,
