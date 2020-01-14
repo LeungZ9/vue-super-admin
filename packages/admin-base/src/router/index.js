@@ -18,11 +18,11 @@ export default (Vue, r, store) => {
       const data = await fetch('/menu')
       store.dispatch('bsMenu/setData', await data.json())
     }
-    if (~to.name.indexOf('bsError.')) return next()
+    if (~to.matched[0].name.indexOf('bsError.')) return next()
 
     let code = 0
     store.dispatch('bsShell/loadStart')
-    store.dispatch('bsMenu/setCurrent', to)
+    store.dispatch('bsMenu/setCurrent', to.matched[0])
     store.dispatch('bsHead/setTitle', '')
 
     if (!store.state.bsMenu.current.length) code = 401

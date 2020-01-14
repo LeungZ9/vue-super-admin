@@ -117,5 +117,12 @@
     "url": "list",
     "icon": "",
     "parent": 6
+  },
+  {
+    "id": 17,
+    "name": "Nest Router",
+    "url": "nestRouter",
+    "icon": "",
+    "parent": 8
   }
 ]

@@ -6,6 +6,9 @@ import cpList from '@demo-feature/components/child-page/list'
 import cpDetail from '@demo-feature/components/child-page/detail'
 import permission from '@demo-feature/components/permission/permission'
 import permissionTest from '@demo-feature/components/permission/permissionTest'
+import nrIndex from '@demo-feature/components/nest-router/index'
+import nrProfile from '@demo-feature/components/nest-router/post'
+import nrPosts from '@demo-feature/components/nest-router/profile'
 
 export default [
   {
@@ -51,5 +54,20 @@ export default [
   {
     path: '*',
     redirect: { name: 'cpList' }
+  },
+  {
+    path: '/nest-router',
+    component: nrIndex,
+    name: 'nestRouter',
+    children: [
+      {
+        path: 'profile',
+        component: nrProfile
+      },
+      {
+        path: 'posts',
+        component: nrPosts
+      }
+    ]
   }
 ]

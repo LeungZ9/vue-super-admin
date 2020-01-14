@@ -56,14 +56,11 @@ export default {
       const current = state.bsMenu.current
       const last = current.length - 1
       if (~last) {
-        let back = ''
-        if (~this.$route.name.indexOf('.')) {
-          back = current[last].url
+        if (~this.$route.matched[0].name.indexOf(current[last].url + '.')) {
+          this.back = current[last].url
+        } else {
+          this.back = last - 1 ? current[last - 1].url : ''
         }
-        if (current.length > 2) {
-          back = current[current.length - 2].url
-        }
-        this.back = back
         this.bcFst = current[0].name
         this.bcLast = current[last].name
       }
