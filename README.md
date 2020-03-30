@@ -92,3 +92,6 @@ Using *--module* to build the specified package.
 ```bash
     npm run build --module=demo-chart,demo-example
 ```
+
+### To do list
+1. ModuleFederationPlugin

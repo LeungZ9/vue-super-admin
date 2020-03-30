@@ -38,7 +38,7 @@ export default {
   methods: {
     handleScroll() {
       if (this.scrollTimer) return
-      setTimeout(() => {
+      this.scrollTimer = setTimeout(() => {
         const scrollTop = this.$refs.list.scrollTop
         const fixedScrollTop = scrollTop - (scrollTop % this.itemHeight)
         this.$refs.content.style.webkitTransform = `translate3d(0, ${fixedScrollTop}px, 0)`
