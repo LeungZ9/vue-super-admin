@@ -41,7 +41,7 @@ export default {
       this.scrollTimer = setTimeout(() => {
         const scrollTop = this.$refs.list.scrollTop
         const fixedScrollTop = scrollTop - (scrollTop % this.itemHeight)
-        this.$refs.content.style.webkitTransform = `translate3d(0, ${fixedScrollTop}px, 0)`
+        this.$refs.content.style.transform = `translate3d(0, ${fixedScrollTop}px, 0)`
 
         this.start = Math.floor(scrollTop / this.itemHeight)
         this.end = this.start + this.visibleCount
