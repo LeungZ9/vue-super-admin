@@ -113,13 +113,20 @@
   },
   {
     "id": 16,
-    "name": "Long List",
-    "url": "list",
+    "name": "Scroll List",
+    "url": "scroll",
     "icon": "",
     "parent": 6
   },
   {
     "id": 17,
+    "name": "Intersection List",
+    "url": "intersection",
+    "icon": "",
+    "parent": 6
+  },
+  {
+    "id": 18,
     "name": "Nest Router",
     "url": "nestRouter",
     "icon": "",

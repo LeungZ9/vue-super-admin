@@ -1,5 +1,6 @@
 import line from '@demo-chart/components/line'
-import list from '@demo-chart/components/list'
+import scroll from '@demo-chart/components/long-list/scroll'
+import intersection from '@demo-chart/components/long-list/intersection'
 
 export default [
   {
@@ -8,9 +9,14 @@ export default [
     component: line
   },
   {
-    path: '/long-list',
-    name: 'list',
-    component: list
+    path: '/scroll-list',
+    name: 'scroll',
+    component: scroll
+  },
+  {
+    path: '/intersection-list',
+    name: 'intersection',
+    component: intersection
   },
   {
     path: '*',
