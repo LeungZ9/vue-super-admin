@@ -1,7 +1,7 @@
 <template>
   <div ref="list" class="list-view">
     <div :style="{ paddingTop: itemHeight * start + 'px', paddingBottom: itemHeight * (last - start - visibleCount) + 'px'}" >
-      <div class="list-view-item" :class="{ first: index === 0, last: index === visibleData.length - 1 }" :key="index" v-for="(item, index) in visibleData">{{ item.value }}</div>
+      <div class="list-view-item" :class="{ first: index === listFirst, last: index === listLast }" :key="index" v-for="(item, index) in visibleData">{{ item.value }}</div>
     </div>
   </div>
 </template>
@@ -18,6 +18,8 @@ export default {
     this.start = 0
     this.last = this.start + this.visibleCount
     this.visibleData = this.data.slice(this.start, this.start + this.visibleCount)
+    this.listFirst = Math.ceil(this.visibleData.length / 2)
+    this.listLast = Math.ceil(this.visibleData.length / 8 * 5)
     this.handleInersection()
   },
   data() {
@@ -30,20 +32,25 @@ export default {
       start: 0,
       last: 0,
       visibleCount: 0,
-      visibleData: []
+      visibleData: [],
+      listFirst: 0,
+      listLast: 0
     }
   },
   methods: {
     topCb(item) {
-      console.log(item)
-      // if (item.isIntersecting && this.start > 0) {
-      //   this.start -= this.visibleCount / 2
-      //   this.visibleData = this.data.slice(this.start, this.start + this.visibleCount)
-      // }
+      if (!item.isIntersecting && this.start > 0) {
+        let diff = Math.ceil(this.visibleCount / 8)
+        this.start -= diff
+        if (this.start < 0) this.start = 0
+        this.visibleData = this.data.slice(this.start, this.start + this.visibleCount)
+      }
     },
     bottomCb(item) {
+      console.log(item, item.target.innerText)
       if (item.isIntersecting && this.last < this.data.length) {
-        this.start += this.visibleCount / 2
+        let diff = Math.ceil(this.visibleCount / 8)
+        this.start += diff
         this.visibleData = this.data.slice(this.start, this.start + this.visibleCount)
         if (this.last < this.start + this.visibleCount) this.last = this.start + this.visibleData.length
       }
