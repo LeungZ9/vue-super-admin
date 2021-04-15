@@ -15,7 +15,7 @@ export default {
     }
   },
   mounted() {
-    this.visibleCount = Math.ceil(this.$el.clientHeight / this.itemHeight)
+    this.visibleCount = Math.ceil(this.$el.clientHeight / this.itemHeight) * 2
     this.start = 0
     this.visibleData = this.data.slice(this.start, this.start + this.visibleCount)
   },
